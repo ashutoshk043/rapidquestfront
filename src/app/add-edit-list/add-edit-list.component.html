@@ -1,0 +1,51 @@
+<div>
+    <div class="conatiner-fliud">
+      <div class="row">
+  
+  
+  
+  
+  
+  
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+          <div class="form_outer_div">
+          <form [formGroup]="videoForm" (ngSubmit)="submitForm()">
+            <div class="mb-3">
+              <label for="video_file" class="form-label">Video</label>
+              <input type="file" class="form-control" id="video_file" formControlName="video" accept="video/mp4,video/x-m4v,video/*" (change)="uploadFile($event)">
+            </div>
+            <div class="mb-3">
+              <label for="sub_title" class="form-label">Subtitle</label>
+              <input type="text" class="form-control" id="sub_title" placeholder="Enter subtitle here..." formControlName="subtitle">
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!videoForm.valid">Submit</button>
+          </form>
+        </div>
+        </div>
+  
+  
+  
+  
+  
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+          <div class="form_outer_div">
+            <ul class="ul_style" *ngFor="let video of allVideoList">
+              <li (click)="videoDetails(video)">
+                <video width="100%" height="100%">
+              <source src="{{serverUrl}}/{{video}}" type="video/mp4">
+              <source src="movie.ogg" type="video/ogg">
+              Your browser does not support the video tag.
+            </video>
+            <h3 class="text-initial">{{video}}</h3>
+              </li>
+            </ul> 
+          </div>
+        </div>
+  
+  
+  
+  
+  
+      </div>
+    </div>
+  </div>

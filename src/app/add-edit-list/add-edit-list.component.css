@@ -1,0 +1,12 @@
+.form_outer_div{
+    padding: 5%;
+}
+.ul_style{
+    text-align: center;
+    list-style: none;
+    cursor: pointer;
+}
+.modalContent{
+    height: 100%;
+    width: 800px!important;
+}
