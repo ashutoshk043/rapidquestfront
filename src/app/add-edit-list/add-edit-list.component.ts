@@ -83,4 +83,19 @@ export class AddEditListComponent {
     this.router.navigate(['viewvideo', name])
 
   }
+
+  deleteVideo(videoName:string){
+    this.loader = true
+    this.httpclient.delete(`${this.serverUrl}/deleteVideo/${videoName}`).subscribe({
+      next:(res:any)=>{
+       alert("deleted successfully..")
+        this.loader = false
+        window.location.reload()
+      },
+      error:(error:any)=>{
+        console.log(error)
+        this.loader = false
+      }
+    })
+  }
 }
