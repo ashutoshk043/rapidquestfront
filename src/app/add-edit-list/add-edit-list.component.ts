@@ -12,10 +12,11 @@ export class AddEditListComponent {
   title = 'frontend';
   videoForm:any
   formData =new FormData()
-  serverUrl = "http://localhost:3000"
+  serverUrl = "https://rapidquestbackend-production.up.railway.app"
   allVideoList:any
   clickedVideoName:string = ''
   clicked:boolean =false
+  loader:boolean=false
 
   constructor(
     private fb:FormBuilder,
@@ -42,6 +43,7 @@ export class AddEditListComponent {
   }
 
   submitForm(){
+    this.loader= true
     this.formData.append('subtitle', this.videoForm.value.subtitle)
     this.httpclient.post(`${this.serverUrl}/addVideo`,this.formData).subscribe({
       next:(res:any)=>{
@@ -50,24 +52,29 @@ export class AddEditListComponent {
         this.videoForm.reset()
         console.log(res)
         this.getAllData()
+        this.loader = false
       },
       error:(error:any)=>{
         this.formData.delete('video')
         this.formData.delete('subtitle')
         console.log(error)
+        this.loader = false
       }
     })
   }
 
 
   getAllData(){
+    this.loader = true
     this.httpclient.get(`${this.serverUrl}/getAllVideos`).subscribe({
       next:(res:any)=>{
         console.log(res)
         this.allVideoList = res?.data
+        this.loader = false
       },
       error:(error:any)=>{
         console.log(error)
+        this.loader = false
       }
     })
   }

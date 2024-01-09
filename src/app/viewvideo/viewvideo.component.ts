@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewvideoComponent {
   video:string=''
-  serverUrl:string='http://localhost:3000'
+  serverUrl:string='https://rapidquestbackend-production.up.railway.app'
 
   constructor(private route: ActivatedRoute) { }
 
